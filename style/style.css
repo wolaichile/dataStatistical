@@ -1,0 +1,207 @@
+/*翻页动画*/
+
+@-webkit-keyframes flipTop {
+	0% {
+		-webkit-transform: perspective(400px) rotateX(0deg);
+	}
+	100% {
+		-webkit-transform: perspective(400px) rotateX(-90deg);
+	}
+}
+
+@-webkit-keyframes flipBottom {
+	0% {
+		-webkit-transform: perspective(400px) rotateX(90deg);
+	}
+	100% {
+		-webkit-transform: perspective(400px) rotateX(0deg);
+	}
+}
+
+@-moz-keyframes flipTop {
+	0% {
+		-moz-transform: perspective(400px) rotateX(0deg);
+	}
+	100% {
+		-moz-transform: perspective(400px) rotateX(-90deg);
+	}
+}
+
+@-moz-keyframes flipBottom {
+	0% {
+		-moz-transform: perspective(400px) rotateX(90deg);
+	}
+	100% {
+		-moz-transform: perspective(400px) rotateX(0deg);
+	}
+}
+
+@-ms-keyframes flipTop {
+	0% {
+		-ms-transform: perspective(400px) rotateX(0deg);
+	}
+	100% {
+		-ms-transform: perspective(400px) rotateX(-90deg);
+	}
+}
+
+@-ms-keyframes flipBottom {
+	0% {
+		-ms-transform: perspective(400px) rotateX(90deg);
+	}
+	100% {
+		-ms-transform: perspective(400px) rotateX(0deg);
+	}
+}
+
+@keyframes flipTop {
+	0% {
+		transform: perspective(400px) rotateX(0deg);
+	}
+	100% {
+		transform: perspective(400px) rotateX(-90deg);
+	}
+}
+
+@keyframes flipBottom {
+	0% {
+		transform: perspective(400px) rotateX(90deg);
+	}
+	100% {
+		transform: perspective(400px) rotateX(0deg);
+	}
+}
+
+.dataStatistics {
+	color: #3DD8E4;
+	font-family: Arial;
+	font-size: 80px;
+	font-weight: bold;
+	height: 100%;
+	width: 100%;
+}
+
+.dataStatistics .digit_set {
+	float: left;
+	display: inline-block;
+	width: 9%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+	margin-left: 1%;
+	border-radius: 10px;
+}
+
+.dataStatistics .digit {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+.dataStatistics .digit>div {
+	position: absolute;
+	left: 0;
+	overflow: hidden;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+
+.dataStatistics .digit>div.digit_top,
+.dataStatistics .digit>div.shadow_top {
+	background-color: #112B50;
+	top: 0;
+	z-index: 0;
+	box-sizing: border-box;
+}
+
+.dataStatistics .digit>div.digit_top:before,
+.dataStatistics .digit>div.shadow_top:before {
+	content: "";
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.dataStatistics .digit>div.shadow_top {
+	width: 100%;
+	opacity: 0;
+	-webkit-transition: opacity 0.3s ease-in;
+}
+
+.dataStatistics .digit>div.digit_bottom,
+.dataStatistics .digit>div.shadow_bottom {
+	display: none;
+	background-color: #e38538;
+	bottom: 0;
+	z-index: 0;
+	border-radius: 0 0 10px 10px;
+}
+
+.dataStatistics .digit>div.digit_bottom .digit_wrap,
+.dataStatistics .digit>div.shadow_bottom .digit_wrap {
+	display: block;
+	margin-top: -95%;
+}
+
+.dataStatistics .digit>div.digit_bottom:before,
+.dataStatistics .digit>div.shadow_bottom:before {
+	content: "";
+	border-radius: 0 0 10px 10px;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.digit_wrap {
+	/*line-height: 170px;*/
+	width: 100%;
+	height: 100%;
+	display: block;
+	overflow: hidden;
+}
+
+.dataStatistics .digit>div.shadow_bottom {
+	opacity: 0;
+	-webkit-transition: opacity 0.3s ease-in;
+}
+
+.dataStatistics .digit.previous .digit_top,
+.dataStatistics .digit.previous .shadow_top {
+	opacity: 1;
+	z-index: 2;
+	-webkit-transform-origin: 50% 100%;
+	-webkit-animation: flipTop 0.3s ease-in both;
+	-moz-transform-origin: 50% 100%;
+	-moz-animation: flipTop 0.3s ease-in both;
+	-ms-transform-origin: 50% 100%;
+	-ms-animation: flipTop 0.3s ease-in both;
+	transform-origin: 50% 100%;
+	animation: flipTop 0.3s ease-in both;
+}
+
+.dataStatistics .digit.previous .digit_bottom,
+.dataStatistics .digit.previous .shadow_bottom {
+	z-index: 1;
+	opacity: 1;
+}
+
+.dataStatistics .digit.active .digit_top {
+	z-index: 1;
+}
+
+.dataStatistics .digit.active .digit_bottom {
+	z-index: 2;
+	-webkit-transform-origin: 50% 0%;
+	-webkit-animation: flipBottom 0.3s 0.3s ease-out both;
+	-moz-transform-origin: 50% 0%;
+	-moz-animation: flipBottom 0.3s 0.3s ease-out both;
+	-ms-transform-origin: 50% 0%;
+	-ms-animation: flipBottom 0.3s 0.3s ease-out both;
+	transform-origin: 50% 0%;
+	animation: flipBottom 0.3s 0.3s ease-out both;
+}
